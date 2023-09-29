@@ -14,7 +14,7 @@
     'depends': ['base','account'],
     'data': [
         # 'security/ir.model.access.csv',
-        # 'views/account_move_view_form.xml',
+        'views/account_move_view_form.xml',
         'views/templates.xml',
     ],
     'demo': [
