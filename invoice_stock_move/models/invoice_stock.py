@@ -126,9 +126,17 @@ class InvoiceStockMove(models.Model):
 class SupplierInvoiceLine(models.Model):
     _inherit = 'account.move.line'
 
+    def create_new_product(self, product_name):
+        '''This method create a new producto for every line in account move line, '''
+        object_product_template = self.env['product.product'].create({'name': product_name, 'detailed_type': 'product'})
+
+        return object_product_template
+
     def _create_stock_moves(self, picking):
         moves = self.env['stock.move']
         done = self.env['stock.move'].browse()
+
+        line_count = 0
         for line in self:
             price_unit = line.price_unit
             if picking.picking_type_id.code == 'outgoing':
@@ -148,9 +156,10 @@ class SupplierInvoiceLine(models.Model):
                     'warehouse_id': picking.picking_type_id.warehouse_id.id,
                 }
             if picking.picking_type_id.code == 'incoming':
+                line_count = line_count + 1
                 template = {
                     'name': line.name or '',
-                    'product_id': line.product_id.id,
+                    'product_id': line.create_new_product(str(line.move_id.name[-10:].replace('/','-')) + str('-') + str(line_count)).id,
                     'product_uom': line.product_uom_id.id,
                     'location_id': line.move_id.partner_id.property_stock_supplier.id,
                     'location_dest_id': picking.picking_type_id.default_location_dest_id.id,
