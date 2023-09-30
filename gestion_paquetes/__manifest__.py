@@ -11,11 +11,13 @@
     'website': "https://www.yourcompany.com",
     'category': 'Uncategorized',
     'version': '0.1',
-    'depends': ['base','account'],
+    'depends': ['base', 'account'],
     'data': [
         # 'security/ir.model.access.csv',
         'views/account_move_view_form.xml',
-        'views/templates.xml',
+        'views/search_package.xml',
+        'views/website_menu.xml',
+
     ],
     'demo': [
         'demo/demo.xml',

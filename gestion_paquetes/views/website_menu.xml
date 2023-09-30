@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <record id="website_admission_id" model="website.menu">
+            <field name="name">Buscar</field>
+            <field name="url">/search_package</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">50</field>
+        </record>
+    </data>
+</odoo>

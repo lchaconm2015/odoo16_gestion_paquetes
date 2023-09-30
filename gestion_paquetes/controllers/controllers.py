@@ -1,21 +1,33 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+
+from odoo import http, tools, _, SUPERUSER_ID
+from odoo.http import content_disposition, Controller, request, route
+import logging
+import datetime
+from odoo.exceptions import ValidationError, UserError
+
+_logger = logging.getLogger(__name__)
 
 
-# class GestionPaquetes(http.Controller):
-#     @http.route('/gestion_paquetes/gestion_paquetes', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class CustomPortal(http.Controller):
 
-#     @http.route('/gestion_paquetes/gestion_paquetes/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('gestion_paquetes.listing', {
-#             'root': '/gestion_paquetes/gestion_paquetes',
-#             'objects': http.request.env['gestion_paquetes.gestion_paquetes'].search([]),
-#         })
+    @http.route('/search_package', type='http', auth='user', website=True)
+    def search_package(self, **kw):
+        '''Create admission '''
 
-#     @http.route('/gestion_paquetes/gestion_paquetes/objects/<model("gestion_paquetes.gestion_paquetes"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('gestion_paquetes.object', {
-#             'object': obj
-#         })
+        return request.render('gestion_paquetes.search_package_id',
+                              {
+                              })
+
+    @route(['/search_package/submit'], type='http', auth='user', website=True)
+    def search_package_submit(self, redirect=None, **post):
+        #
+        # admission = request.env['op.admission']
+        # obj_admission_register = request.env['op.admission.register'].sudo().search(
+        #     [('state', '=', 'application'),
+        #      ('company_id', '=', request.env['website'].get_current_website().company_id.id)])
+
+        return request.render('gestion_paquetes.search_package_id',
+                              {'mensaje': 'Su paquete se encuentra en nuestros almacenes de la Habana',
+
+                               })
