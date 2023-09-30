@@ -85,7 +85,7 @@ class InvoiceStockMove(models.Model):
                 self.invoice_picking_id = picking.id
                 self.picking_count = len(picking)
                 moves = order.invoice_line_ids.filtered(
-                    lambda r: r.product_id.type in ['product', 'consu'])._create_stock_moves(picking)
+                    lambda r: r.product_id.type in ['product', 'consu','service'])._create_stock_moves(picking)
                 move_ids = moves._action_confirm()
                 move_ids._action_assign()
 
