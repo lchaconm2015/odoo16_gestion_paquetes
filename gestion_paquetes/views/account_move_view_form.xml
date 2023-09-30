@@ -19,7 +19,7 @@
                     <field name="product_id" optional="show"
                            domain=" context.get('default_move_type') in ('out_invoice', 'out_refund', 'out_receipt')
                              and [('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]
-                             and [('is_package', '=', True)]
+                             and [('is_package', '!=', True)]
                              or [('purchase_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]                                                "/>
 
                 </xpath>

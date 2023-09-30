@@ -128,7 +128,8 @@ class SupplierInvoiceLine(models.Model):
 
     def create_new_product(self, product_name):
         '''This method create a new producto for every line in account move line, '''
-        object_product_template = self.env['product.product'].create({'name': product_name, 'detailed_type': 'product'})
+        object_product_template = self.env['product.product'].create(
+            {'name': product_name, 'detailed_type': 'product', 'is_package': True})
 
         return object_product_template
 
@@ -159,7 +160,8 @@ class SupplierInvoiceLine(models.Model):
                 line_count = line_count + 1
                 template = {
                     'name': line.name or '',
-                    'product_id': line.create_new_product(str(line.move_id.name[-10:].replace('/','-')) + str('-') + str(line_count)).id,
+                    'product_id': line.create_new_product(
+                        str(line.move_id.name[-10:].replace('/', '-')) + str('-') + str(line_count)).id,
                     'product_uom': line.product_uom_id.id,
                     'location_id': line.move_id.partner_id.property_stock_supplier.id,
                     'location_dest_id': picking.picking_type_id.default_location_dest_id.id,
