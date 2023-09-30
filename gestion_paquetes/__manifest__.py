@@ -17,6 +17,7 @@
         'views/account_move_view_form.xml',
         'views/search_package.xml',
         'views/website_menu.xml',
+        'views/custom_invoice_template.xml',
 
     ],
     'demo': [

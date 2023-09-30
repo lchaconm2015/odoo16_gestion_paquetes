@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document" priority="21">
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr[1]/th[1]" position="after">
+            <th name="th_peso" class="text-start">
+                <span>Peso/Libras</span>
+            </th>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/tbody//tr[1]//td[1]" position="after">
+            <td>
+                <span t-esc="line.package_weight or ''"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>
