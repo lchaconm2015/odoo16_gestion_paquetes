@@ -52,7 +52,7 @@
                                                                        class="form-control s_website_form_input"
                                                                        name="package_number"
                                                                        required=""
-                                                                       placeholder="0000-00000-0"
+                                                                       placeholder="P-0000-00000-0"
                                                                 />
 
                                                             </div>
