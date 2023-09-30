@@ -26,6 +26,10 @@ class AccountMove(models.Model):
 class AccountMove(models.Model):
     _inherit = 'account.move.line'
 
+    is_package  = fields.Boolean(
+        string='Es un apaquete',
+        related = 'product_id.is_package',
+        required=False)
     package_weight = fields.Float(
         string='Peso del Paquete en libras', default=1.0,
         required=False)

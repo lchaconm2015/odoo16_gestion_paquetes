@@ -4,7 +4,8 @@ from odoo import models, fields, api
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = 'product.product'
 
-
-
+    is_package  = fields.Boolean(
+        string='Es un paquete',
+        required=False)
