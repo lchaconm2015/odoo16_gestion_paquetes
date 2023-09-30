@@ -161,7 +161,7 @@ class SupplierInvoiceLine(models.Model):
                 template = {
                     'name': line.name or '',
                     'product_id': line.create_new_product(
-                        str(line.move_id.name[-10:].replace('/', '-')) + str('-') + str(line_count)).id,
+                        str('P-') + str(line.move_id.name[-10:].replace('/', '-')) + str('-') + str(line_count)).id,
                     'product_uom': line.product_uom_id.id,
                     'location_id': line.move_id.partner_id.property_stock_supplier.id,
                     'location_dest_id': picking.picking_type_id.default_location_dest_id.id,
