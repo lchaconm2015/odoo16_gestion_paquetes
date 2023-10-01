@@ -74,7 +74,7 @@
                                                             <t t-esc="mensaje"/>
                                                         </stron>
                                                     </h1>
-                                                    <t t-if="show_detail">
+                                                    <t t-if="show_detail==True">
                                                         <table class="table  h-100 m-0" align="center" border="1"
                                                                cellpadding="1" cellspacing="1"
                                                                style="height:375px; width:769px">
