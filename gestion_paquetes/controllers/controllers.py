@@ -41,7 +41,7 @@ class CustomPortal(http.Controller):
                 partner = None
                 shipping_addres = ''
                 object_stock_picking = request.env['stock.picking'].search(
-                    [('product_id.name', '=', post['package_number'])])
+                    [('product_id.name', '=', post['package_number']), ('picking_type_id.code', '=', 'incoming')])
                 obj_account_move = request.env['account.move'].search(
                     [('invoice_picking_id.id', '=', object_stock_picking.id)])
 
