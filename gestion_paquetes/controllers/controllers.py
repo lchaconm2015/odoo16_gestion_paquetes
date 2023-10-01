@@ -27,6 +27,8 @@ class CustomPortal(http.Controller):
         package_number = ''
         shipping_addres = ''
         invoice_number = ''
+        partner = None
+        location = None
 
         if 'package_number' in post:
             obj_stock_quant = request.env['stock.quant'].sudo().search(
@@ -51,7 +53,6 @@ class CustomPortal(http.Controller):
                 invoice_number = obj_account_move.name
             else:
                 mensaje = 'Su paquete no fue encontrado en nuestros almacenes, rectifique su número de paquete.'
-
 
         return request.render('gestion_paquetes.search_package_id',
                               {'mensaje': mensaje, 'package_number': package_number,
