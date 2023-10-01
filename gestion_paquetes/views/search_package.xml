@@ -68,12 +68,106 @@
                                                     </div>
                                                 </div>
 
-                                              <div class="container">
+                                                <div class="container">
                                                     <h1>
                                                         <stron>
                                                             <t t-esc="mensaje"/>
                                                         </stron>
                                                     </h1>
+                                                    <t t-if="show_detail">
+                                                        <table class="table  h-100 m-0" align="center" border="1"
+                                                               cellpadding="1" cellspacing="1"
+                                                               style="height:375px; width:769px">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th colspan="2" scope="col" style="width: 159px;">
+                                                                        <span style="font-size:36px">
+                                                                            <span style="font-family:Comic Sans MS,cursive">
+                                                                                No:
+                                                                                <t t-esc="package_number"/>
+                                                                            </span>
+                                                                        </span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="col"
+                                                                        style="width: 224px; text-align: left;">
+                                                                        <span style="font-size:20px">
+                                                                            <strong>
+                                                                                <span style="font-family:Comic Sans MS,cursive">
+                                                                                    Cliente:
+                                                                                </span>
+                                                                            </strong>
+                                                                        </span>
+                                                                    </th>
+                                                                    <td style="width:531px">
+                                                                        <t t-esc="partner_name"/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:224px">
+                                                                        <span style="font-size:20px">
+                                                                            <strong>
+                                                                                <span style="font-family:Comic Sans MS,cursive">
+                                                                                    Dirección de Entrega:
+                                                                                </span>
+                                                                            </strong>
+                                                                        </span>
+                                                                    </td>
+                                                                    <td style="width:531px">
+                                                                        <t t-esc="shipping_addres"/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:224px">
+                                                                        <span style="font-size:20px">
+                                                                            <strong>
+                                                                                <span style="font-family:Comic Sans MS,cursive">
+                                                                                    Ubicación:
+                                                                                </span>
+                                                                            </strong>
+                                                                        </span>
+                                                                    </td>
+                                                                    <td style="width:531px">
+                                                                        <t t-esc="location"/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:224px">
+                                                                        <span style="font-size:20px">
+                                                                            <strong>
+                                                                                <span style="font-family:Comic Sans MS,cursive">
+                                                                                    Estado:
+                                                                                </span>
+                                                                            </strong>
+                                                                        </span>
+                                                                    </td>
+                                                                    <td style="width:531px">Transportando</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:224px">
+                                                                        <span style="font-size:20px">
+                                                                            <strong>
+                                                                                <span style="font-family:Comic Sans MS,cursive">
+                                                                                    No. Factura:
+                                                                                </span>
+                                                                            </strong>
+                                                                        </span>
+                                                                    </td>
+                                                                    <td style="width:531px">
+                                                                        <t t-esc="invoice_number"/>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </t>
+                                                </div>
+                                                <div>
+                                                    <p></p>
+                                                    <p></p>
                                                 </div>
                                             </div>
                                         </form>
