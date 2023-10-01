@@ -24,6 +24,10 @@ class CustomPortal(http.Controller):
         mensaje = ''
         show_detail = False
         obj_stock_quant = None
+        package_number = ''
+        shipping_addres = ''
+        invoice_number = ''
+
         if 'package_number' in post:
             obj_stock_quant = request.env['stock.quant'].sudo().search(
                 [('product_id.name', '=', post['package_number']),
