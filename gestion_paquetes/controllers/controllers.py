@@ -36,7 +36,8 @@ class CustomPortal(http.Controller):
                 mensaje = 'Su paquete no fue encontrado en nuestros almacenes, rectifique su número de paquete.'
             partner = None
             shipping_addres = ''
-            object_stock_move = request.env['stock.move'].search([('product_id.name', '=', post['package_number'])])
+            object_stock_move = request.env['stock.move'].search([('product_id.name', '=', post['package_number']),
+                                                                  ('picking_type_id.code', '=', 'incoming')])
             obj_account_move = request.env['account.move'].search(
                 [('invoice_picking_id.id', '=', object_stock_move.id)])
 
