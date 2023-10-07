@@ -145,7 +145,7 @@
                                                                             </strong>
                                                                         </span>
                                                                     </td>
-                                                                    <td style="width:531px">Transportando</td>
+                                                                    <td style="width:531px"><t t-esc="package_state"/></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="width:224px">

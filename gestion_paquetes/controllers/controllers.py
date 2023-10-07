@@ -48,10 +48,11 @@ class CustomPortal(http.Controller):
                 shipping_addres = obj_account_move.partner_shipping_id.street
                 location = obj_product_template.location_country.name
                 invoice_number = obj_account_move.name
+                package_state = obj_product_template.package_state
             else:
                 mensaje = 'Su paquete no fue encontrado en nuestros almacenes, rectifique su número de paquete.'
 
         return request.render('gestion_paquetes.search_package_id',
                               {'mensaje': mensaje, 'package_number': package_number,
                                'shipping_addres': shipping_addres, 'invoice_number': invoice_number,
-                               'partner_name': partner, 'location': location, 'show_detail': show_detail})
+                               'partner_name': partner, 'location': location, 'show_detail': show_detail,'package_state':package_state})
