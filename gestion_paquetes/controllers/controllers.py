@@ -33,7 +33,6 @@ class CustomPortal(http.Controller):
         if 'package_number' in post:
             obj_stock_quant = request.env['stock.quant'].sudo().search(
                 [('product_id.name', '=', post['package_number']),
-                 ('company_id', '=', request.env['website'].get_current_website().company_id.id),
                  ('inventory_quantity_auto_apply', '=', 1)])
             if obj_stock_quant:
                 mensaje = 'Su paquete fue encontrado en nuestro sistema'

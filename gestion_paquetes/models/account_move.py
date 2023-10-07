@@ -22,25 +22,53 @@ class AccountMove(models.Model):
         default=_compute_last_product,
         required=False)
 
-
-class AccountMove(models.Model):
-    _inherit = 'account.move.line'
-
-    is_package  = fields.Boolean(
-        string='Es un apaquete',
-        related = 'product_id.is_package',
+    package_related_ids = fields.One2many(
+        comodel_name='product.template',
+        inverse_name='invoice_related_id',
+        string='Paquetes Relacionados',
         required=False)
-    package_weight = fields.Float(
-        string='Peso del Paquete en libras', default=1.0,
-        required=False)
+    package_count = fields.Integer(string="Count", copy=False, compute="_compute_package_count")
 
-    last_product_to_used = fields.Many2one(
-        comodel_name='product.product',
-        string='Last Product',
-        related='move_id.last_product_to_used',
-        required=False)
+    def generate_package(self):
+        line_count = 0
+        for line in self.invoice_line_ids:
+            line_count = line_count + 1
+            line.create_new_product(
+                str('P-') + str(line.move_id.name[-10:].replace('/', '-')) + str('-') + str(line_count))
 
-    @api.onchange('package_weight', 'quantity')
-    def _onchange_FIELD_NAME(self):
-        for line in self:
-            line.price_unit = line.quantity * line.package_weight * line.product_id.lst_price
+    def _compute_package_count(self):
+        for rec in self:
+            rec.package_count = len(rec.package_related_ids)
+
+    def action_view_package(self):
+        pass
+
+    class AccountMoveLine(models.Model):
+        _inherit = 'account.move.line'
+
+        is_package = fields.Boolean(
+            string='Es un apaquete',
+            related='product_id.is_package',
+            required=False)
+        package_weight = fields.Float(
+            string='Peso del Paquete en libras', default=1.0,
+            required=False)
+
+        last_product_to_used = fields.Many2one(
+            comodel_name='product.product',
+            string='Last Product',
+            related='move_id.last_product_to_used',
+            required=False)
+
+        @api.onchange('package_weight', 'quantity')
+        def _onchange_FIELD_NAME(self):
+            for line in self:
+                line.price_unit = line.quantity * line.package_weight * line.product_id.lst_price
+
+        def create_new_product(self, product_name):
+            '''This method create a new producto for every line in account move line, '''
+            object_product_template = self.env['product.product'].create(
+                {'name': product_name, 'detailed_type': 'product', 'is_package': True,
+                 'invoice_related_id': self.move_id.id})
+
+            return object_product_template

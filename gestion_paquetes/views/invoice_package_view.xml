@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_invoice_stock_move_view" model="ir.ui.view">
+            <field name="name">Move Name</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="generate_package" string="Generar Paquetes" type="object" class="oe_highlight"
+                            attrs="{'invisible':['|',('state', '=', 'draft'),('package_count', '&gt;', 1)]}"/>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button type="object"
+                            name="action_view_package"
+                            class="oe_stat_button"
+                            attrs="{'invisible':['|',('state','=','draft'),('package_count', '&lt;', 1)]}"
+                            icon="fa-truck">
+                        <field name="package_count" string="Paquetes" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+        <!--states="open,paid"-->

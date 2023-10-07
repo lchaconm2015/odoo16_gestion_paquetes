@@ -18,6 +18,7 @@
         'views/search_package.xml',
         'views/website_menu.xml',
         'views/custom_invoice_template.xml',
+        'views/invoice_package_view.xml'
 
     ],
     'demo': [
