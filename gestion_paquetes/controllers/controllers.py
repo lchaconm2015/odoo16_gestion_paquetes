@@ -29,7 +29,7 @@ class CustomPortal(http.Controller):
         invoice_number = ''
         partner = None
         location = None
-
+        package_state = ''
         if 'package_number' in post:
             obj_product_template = request.env['product.template'].sudo().search(
                 [('name', '=', post['package_number'])])
