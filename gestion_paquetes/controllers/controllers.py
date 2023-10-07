@@ -31,24 +31,22 @@ class CustomPortal(http.Controller):
         location = None
 
         if 'package_number' in post:
-            obj_stock_quant = request.env['stock.quant'].sudo().search(
-                [('product_id.name', '=', post['package_number']),
-                 ('inventory_quantity_auto_apply', '=', 1)])
-            if obj_stock_quant:
+            obj_product_template = request.env['product.template'].sudo().search(
+                [('name', '=', post['package_number'])])
+            if obj_product_template:
                 mensaje = 'Su paquete fue encontrado en nuestro sistema'
                 show_detail = True
                 partner = None
                 shipping_addres = ''
-                object_stock_picking = request.env['stock.picking'].search(
-                    [('product_id.name', '=', post['package_number']), ('picking_type_id.code', '=', 'incoming')])
+
                 obj_account_move = request.env['account.move'].search(
-                    [('invoice_picking_id.id', '=', object_stock_picking.id)])
+                    [('id', '=', obj_product_template.invoice_related_id.id)])
 
                 partner = obj_account_move.partner_id.name
 
-                package_number = obj_stock_quant.product_id.name
+                package_number = obj_product_template.name
                 shipping_addres = obj_account_move.partner_shipping_id.street
-                location = obj_stock_quant.location_id.name
+                location = obj_product_template.location_country.name
                 invoice_number = obj_account_move.name
             else:
                 mensaje = 'Su paquete no fue encontrado en nuestros almacenes, rectifique su número de paquete.'

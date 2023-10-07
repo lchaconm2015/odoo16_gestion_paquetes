@@ -69,6 +69,6 @@ class AccountMove(models.Model):
             '''This method create a new producto for every line in account move line, '''
             object_product_template = self.env['product.product'].create(
                 {'name': product_name, 'detailed_type': 'product', 'is_package': True,
-                 'invoice_related_id': self.move_id.id})
+                 'invoice_related_id': self.move_id.id, 'responsable_id': self.env.user.id})
 
             return object_product_template
