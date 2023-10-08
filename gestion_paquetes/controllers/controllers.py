@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 
 class CustomPortal(http.Controller):
 
-    @http.route('/search_package', type='http', auth='user', website=True)
+    @http.route('/search_package', type='http', auth='public', website=True)
     def search_package(self, **kw):
         '''Create admission '''
 
@@ -19,7 +19,7 @@ class CustomPortal(http.Controller):
                               {
                               })
 
-    @route(['/search_package/submit'], type='http', auth='user', website=True)
+    @route(['/search_package/submit'], type='http', auth='public', website=True)
     def search_package_submit(self, redirect=None, **post):
         mensaje = ''
         show_detail = False
@@ -39,7 +39,7 @@ class CustomPortal(http.Controller):
                 partner = None
                 shipping_addres = ''
 
-                obj_account_move = request.env['account.move'].search(
+                obj_account_move = request.env['account.move'].sudo().search(
                     [('id', '=', obj_product_template.invoice_related_id.id)])
 
                 partner = obj_account_move.partner_id.name
@@ -50,7 +50,7 @@ class CustomPortal(http.Controller):
                 invoice_number = obj_account_move.name
                 package_state = obj_product_template.package_state
             else:
-                mensaje = 'Su paquete no fue encontrado en nuestros almacenes, rectifique su número de paquete.'
+                mensaje = 'Su paquete no fue encontrado, rectifique su número.'
 
         return request.render('gestion_paquetes.search_package_id',
                               {'mensaje': mensaje, 'package_number': package_number,

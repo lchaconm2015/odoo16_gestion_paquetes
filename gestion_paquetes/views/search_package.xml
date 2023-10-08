@@ -177,21 +177,7 @@
                                                                                 <t t-esc="invoice_number"/>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <td style="width:224px">
-                                                                                <span style="font-size:20px">
-                                                                                    <strong>
-                                                                                        <span>
-                                                                                            -
-                                                                                            <!--                                                                                    No. Factura:-->
-                                                                                        </span>
-                                                                                    </strong>
-                                                                                </span>
-                                                                            </td>
-                                                                            <td style="width:531px">
-                                                                                _
-                                                                            </td>
-                                                                        </tr>
+
                                                                     </tbody>
                                                                 </table>
                                                             </div>
