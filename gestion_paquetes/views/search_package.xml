@@ -34,7 +34,7 @@
                                                 </div>
                                                 <!--________________________________________________Inicio Bloque 1______________________________-->
 
-                                                <div class="col-sm-12 col-xs-12 s_website_form_field s_website_form_custom s_website_form_required"
+                                                <div class="col-lg-6 col-sm-12 col-xs-12 s_website_form_field s_website_form_custom s_website_form_required"
                                                      data-type="char" data-name="Field">
                                                     <div class="row  s_col_no_bgcolor">
                                                         <div style="width:40%;">
@@ -59,128 +59,145 @@
                                                             <button type="submit"
                                                                     class="btn btn-primary float-end mb32 "
                                                             >
-                                                                Search
+                                                                Buscar
                                                                 <span class="fa fa-search"/>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="container">
-                                                    <h1>
-                                                        <stron>
-                                                            <t t-esc="mensaje"/>
-                                                        </stron>
-                                                    </h1>
-                                                    <div clas='col-xs-12'>
-
-                                                    </div>
                                                     <t t-if="show_detail==True">
-                                                        <table class="table-responsive-sm h-100 m-0" align="center"
-                                                               border="0"
-                                                               cellpadding="1" cellspacing="1"
-                                                               style="height:375px; width:769px">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th colspan="2" scope="col" style="width: 159px;">
-                                                                        <span style="font-size:30px">
-                                                                            <span>
-                                                                                No:
-                                                                                <t t-esc="package_number"/>
-                                                                            </span>
-                                                                        </span>
-                                                                    </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th scope="col"
-                                                                        style="width: 224px; text-align: left;">
-                                                                        <span style="font-size:20px">
-                                                                            <strong>
-                                                                                <span>
-                                                                                    Cliente:
-                                                                                </span>
-                                                                            </strong>
-                                                                        </span>
-                                                                    </th>
-                                                                    <td style="width:531px">
-                                                                        <t t-esc="partner_name"/>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="width:224px">
-                                                                        <span style="font-size:20px">
-                                                                            <strong>
-                                                                                <span>
-                                                                                    Dirección de Entrega:
-                                                                                </span>
-                                                                            </strong>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td style="width:531px">
-                                                                        <t t-esc="shipping_addres"/>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="width:224px">
-                                                                        <span style="font-size:20px">
-                                                                            <strong>
-                                                                                <span>
-                                                                                    Ubicación:
-                                                                                </span>
-                                                                            </strong>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td style="width:531px">
-                                                                        <t t-esc="location"/>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="width:224px">
-                                                                        <span style="font-size:20px">
-                                                                            <strong>
-                                                                                <span>
-                                                                                    Estado:
-                                                                                </span>
-                                                                            </strong>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td style="width:531px">
-                                                                        <t t-esc="package_state"/>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="width:224px">
-                                                                        <span style="font-size:20px">
-                                                                            <strong>
-                                                                                <span>
-                                                                                    No. Factura:
-                                                                                </span>
-                                                                            </strong>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td style="width:531px">
-                                                                        <t t-esc="invoice_number"/>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="width:224px">
-                                                                        <span style="font-size:20px">
-                                                                            <strong>
-                                                                                <span>
-                                                                                    -
-                                                                                    <!--                                                                                    No. Factura:-->
-                                                                                </span>
-                                                                            </strong>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td style="width:531px">
-                                                                        _
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                        <div class="alert alert-success">
+                                                            <span style="font-size:30px">
+                                                                <strong>
+                                                                    <t t-esc="mensaje"/>
+                                                                </strong>
+                                                            </span>
+                                                        </div>
                                                     </t>
+                                                     <t t-if="show_detail==False">
+                                                        <div class="alert alert-danger">
+                                                            <span style="font-size:30px">
+                                                                <strong>
+                                                                    <t t-esc="mensaje"/>
+                                                                </strong>
+                                                            </span>
+                                                        </div>
+                                                    </t>
+                                                    <div>
+
+                                                        <t t-if="show_detail==True">
+                                                            <div class="table-responsive-sm">
+                                                                <table class="table h-100 m-0" align="center"
+                                                                       border="0"
+                                                                       cellpadding="1" cellspacing="1"
+                                                                       style="height:375px; width:769px">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th colspan="2" scope="col"
+                                                                                style="width: 159px;">
+                                                                                <span style="font-size:30px">
+                                                                                    <span>
+                                                                                        No:
+                                                                                        <t t-esc="package_number"/>
+                                                                                    </span>
+                                                                                </span>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="col"
+                                                                                style="width: 224px; text-align: left;">
+                                                                                <span style="font-size:20px">
+                                                                                    <strong>
+                                                                                        <span>
+                                                                                            Cliente:
+                                                                                        </span>
+                                                                                    </strong>
+                                                                                </span>
+                                                                            </th>
+                                                                            <td style="width:531px">
+                                                                                <t t-esc="partner_name"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:224px">
+                                                                                <span style="font-size:20px">
+                                                                                    <strong>
+                                                                                        <span>
+                                                                                            Dirección de Entrega:
+                                                                                        </span>
+                                                                                    </strong>
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:531px">
+                                                                                <t t-esc="shipping_addres"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:224px">
+                                                                                <span style="font-size:20px">
+                                                                                    <strong>
+                                                                                        <span>
+                                                                                            Ubicación:
+                                                                                        </span>
+                                                                                    </strong>
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:531px">
+                                                                                <t t-esc="location"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:224px">
+                                                                                <span style="font-size:20px">
+                                                                                    <strong>
+                                                                                        <span>
+                                                                                            Estado:
+                                                                                        </span>
+                                                                                    </strong>
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:531px">
+                                                                                <t t-esc="package_state"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:224px">
+                                                                                <span style="font-size:20px">
+                                                                                    <strong>
+                                                                                        <span>
+                                                                                            No. Factura:
+                                                                                        </span>
+                                                                                    </strong>
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:531px">
+                                                                                <t t-esc="invoice_number"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:224px">
+                                                                                <span style="font-size:20px">
+                                                                                    <strong>
+                                                                                        <span>
+                                                                                            -
+                                                                                            <!--                                                                                    No. Factura:-->
+                                                                                        </span>
+                                                                                    </strong>
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:531px">
+                                                                                _
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </t>
+                                                    </div>
+
                                                 </div>
                                                 <div>
                                                     <p></p>
