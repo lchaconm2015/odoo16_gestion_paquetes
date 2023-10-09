@@ -13,7 +13,7 @@ class CustomPortal(http.Controller):
 
     @http.route('/search_package', type='http', auth='public', website=True)
     def search_package(self, **kw):
-        '''Create admission '''
+        '''Buscar Paquete '''
 
         return request.render('gestion_paquetes.search_package_id',
                               {
