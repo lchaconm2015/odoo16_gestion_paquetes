@@ -41,7 +41,16 @@ class AccountMove(models.Model):
             rec.package_count = len(rec.package_related_ids)
 
     def action_view_package(self):
-        pass
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Paquetes',
+            'view_mode': 'kanban',
+            'res_model': 'product.template',
+            'view_id': self.env.ref('gestion_paquetes.package_kanban_view').id,
+            'domain': [('invoice_related_id', '=', self.id)],
+            'context': "{'create': False}"
+        }
 
     class AccountMoveLine(models.Model):
         _inherit = 'account.move.line'
@@ -61,7 +70,7 @@ class AccountMove(models.Model):
             required=False)
 
         @api.onchange('package_weight', 'quantity')
-        def _onchange_FIELD_NAME(self):
+        def _onchange_package_weight(self):
             for line in self:
                 line.price_unit = line.quantity * line.package_weight * line.product_id.lst_price
 

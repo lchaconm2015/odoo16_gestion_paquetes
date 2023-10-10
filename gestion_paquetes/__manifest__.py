@@ -19,7 +19,8 @@
         'views/website_menu.xml',
         'views/custom_invoice_template.xml',
         'views/invoice_package_view.xml',
-        'views/product_template_form_view.xml'
+        'views/product_template_form_view.xml',
+        'views/package_kanban_view.xml'
 
     ],
     'demo': [
