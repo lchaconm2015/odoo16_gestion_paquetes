@@ -38,7 +38,6 @@ class CustomPortal(http.Controller):
                 show_detail = True
                 partner = None
                 shipping_addres = ''
-
                 obj_account_move = request.env['account.move'].sudo().search(
                     [('id', '=', obj_product_template.invoice_related_id.id)])
 

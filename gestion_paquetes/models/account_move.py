@@ -33,8 +33,9 @@ class AccountMove(models.Model):
         line_count = 0
         for line in self.invoice_line_ids:
             line_count = line_count + 1
-            line.create_new_product(
-                str('P-') + str(line.move_id.name[-10:].replace('/', '-')) + str('-') + str(line_count))
+            if line.product_id:
+                line.create_new_product(
+                    str('P-') + str(line.move_id.name[-10:].replace('/', '-')) + str('-') + str(line_count))
 
     def _compute_package_count(self):
         for rec in self:
@@ -46,9 +47,11 @@ class AccountMove(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Paquetes',
             'view_mode': 'kanban',
+            'view_type': 'tree',
             'res_model': 'product.template',
             'view_id': self.env.ref('gestion_paquetes.package_kanban_view').id,
             'domain': [('invoice_related_id', '=', self.id)],
+
             'context': "{'create': False}"
         }
 
@@ -72,6 +75,7 @@ class AccountMove(models.Model):
         @api.onchange('package_weight', 'quantity')
         def _onchange_package_weight(self):
             for line in self:
+
                 line.price_unit = line.quantity * line.package_weight * line.product_id.lst_price
 
         def create_new_product(self, product_name):

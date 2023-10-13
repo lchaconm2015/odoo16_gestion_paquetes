@@ -27,11 +27,11 @@ class ProductTemplate(models.Model):
         comodel_name='res.country',
         string='Ubicación (País)',
         required=False)
-    package_state  = fields.Selection(
+    package_state = fields.Selection(
         string='Estado del Paquete',
-        selection=[('transportandose', 'Transportándose'),
-                   ('recibido', 'Recibido por el responsable'),
+        selection=[('empaquetado', 'Empaquetado'),
+                   ('transportandose', 'Transportándose'),
+                   ('recibido', 'Recibido por el despachador'),
                    ('entregado', 'Entregado al destinatario'),
                    ],
         required=False, )
-

@@ -85,7 +85,6 @@
                                                         </div>
                                                     </t>
                                                     <div>
-
                                                         <t t-if="show_detail==True">
                                                             <div class="table-responsive-sm">
                                                                 <table class="table h-100 m-0" align="center"
