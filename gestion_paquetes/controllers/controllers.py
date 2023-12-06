@@ -45,7 +45,7 @@ class CustomPortal(http.Controller):
 
                 package_number = obj_product_template.name
                 shipping_addres = obj_account_move.partner_shipping_id.street
-                location = obj_product_template.location_country.name
+                location = obj_product_template.paq_location_id.name
                 invoice_number = obj_account_move.name
                 package_state = obj_product_template.package_state
             else:
