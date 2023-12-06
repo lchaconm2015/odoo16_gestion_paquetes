@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
-
+from odoo import api, fields, models, tools
+from odoo.modules import get_module_resource
+import base64
+from odoo.modules.module import get_module_resource
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
@@ -20,6 +22,11 @@ class ProductTemplate(models.Model):
         string='Responsable',
         required=False)
 
+    paq_location_id = fields.Many2one(
+        comodel_name='paq_location',
+        string='Ubicación',
+        required=False)
+
     location_province = fields.Char(
         string='Ubicación (Provincia)',
         required=False)
@@ -35,3 +42,25 @@ class ProductTemplate(models.Model):
                    ('entregado', 'Entregado al destinatario'),
                    ],
         required=False, )
+
+    @api.model
+    def _get_default_image_value(self):
+        image = False
+        img_path = get_module_resource('l16_gestion_paquetes', 'static/img', 'paquete.png')  # your default image path
+        if img_path:
+            with open(img_path, 'rb') as f:  # read the image from the path
+                image = f.read()
+        if image:  # if the file type is .jpg then you don't need this whole if condition.
+            image = tools.image_colorize(image)
+        return tools.image_resize_image_big(base64.b64encode(image))
+
+
+    def _default_image(self):
+        image_path = get_module_resource('gestion_paquetes', 'static/img', 'paquete.png')
+        return base64.b64encode(open(image_path, 'rb').read())
+
+    @api.model
+    def create(self, vals):
+        if vals.get('is_package'):
+            vals['image_1920'] = self._default_image()
+        return super(ProductTemplate, self).create(vals)

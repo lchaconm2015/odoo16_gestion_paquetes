@@ -50,7 +50,7 @@ class AccountMove(models.Model):
             'view_type': 'tree',
             'res_model': 'product.template',
             'view_id': self.env.ref('gestion_paquetes.package_kanban_view').id,
-            'domain': [('invoice_related_id', '=', self.id)],
+            # 'domain': [('invoice_related_id', '=', self.id)],
 
             'context': "{'create': False}"
         }

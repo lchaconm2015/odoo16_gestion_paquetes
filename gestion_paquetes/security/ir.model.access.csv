@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_gestion_paquetes_gestion_paquetes,gestion_paquetes.gestion_paquetes,model_gestion_paquetes_gestion_paquetes,base.group_user,1,1,1,1
+gestion_paquetes.access_paq_location,access_paq_location,gestion_paquetes.model_paq_location,base.group_user,1,1,1,1

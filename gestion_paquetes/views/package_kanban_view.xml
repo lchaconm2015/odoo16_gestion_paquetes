@@ -5,7 +5,7 @@
             <field name="name">package.product.kanban</field>
             <field name="model">product.template</field>
             <field name="arch" type="xml">
-                <kanban sample="1" class="o_kanban_product_template" default_group_by="responsable_id">
+                <kanban sample="1" class="o_kanban_product_template" default_group_by="paq_location_id">
                     <field name="id"/>
                     <field name="product_variant_count"/>
                     <field name="currency_id"/>
@@ -24,26 +24,22 @@
                                         <div class="o_kanban_record_headings">
                                             <strong class="o_kanban_record_title">
                                                 <field name="name"/>
-                                                <field name="responsable_id"/>
-
                                             </strong>
                                         </div>
+
                                         <field name="priority" widget="priority"/>
                                     </div>
-                                    <t t-if="record.default_code.value">[<field name="default_code"/>]
-                                    </t>
-                                    <div t-if="record.product_variant_count.value &gt; 1"
-                                         groups="product.group_product_variant">
-                                        <strong>
-                                            <t t-esc="record.product_variant_count.value"/>
-                                            Variants
-                                        </strong>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <field name="paq_location_id"/>
+                                            </li>
+                                            <li>
+                                                <field name="responsable_id"/>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div name="product_lst_price" class="mt-1">
-                                        Price:
-                                        <field name="list_price" widget="monetary"
-                                               options="{'currency_field': 'currency_id', 'field_digits': True}"></field>
-                                    </div>
+
                                 </div>
                             </div>
                         </t>
@@ -57,8 +53,6 @@
             <field name="res_model">product.template</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="view_id" ref="package_kanban_view"/>
-            <!--            <field name="search_view_id" ref="product.product_template_search_view"/>-->
-            <field name="context">{"search_default_group_by_package_state":'empaquetado'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a new product
@@ -69,5 +63,9 @@
                 </p>
             </field>
         </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="kanban_menu_id" name="Gestión de paquetería"  sequence="20"/>
+        <menuitem id="kanban_menu_id_2" name="Paquetes"  parent='kanban_menu_id' action="package_action" sequence="20"/>
     </data>
 </odoo>

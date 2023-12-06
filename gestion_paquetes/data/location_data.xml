@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="location_01" model="paq_location">
+            <field name="code">01</field>
+            <field name="name">Almacen-USA</field>
+        </record>
+        <record id="location_02" model="paq_location">
+            <field name="code">02</field>
+            <field name="name">Almacen-HB</field>
+        </record>
+        <record id="location_03" model="paq_location">
+            <field name="code">03</field>
+            <field name="name">Almacen-HLG</field>
+        </record>
+        <record id="location_04" model="paq_location">
+            <field name="code">04</field>
+            <field name="name">Almacen-LTU</field>
+        </record>
+        <record id="location_05" model="paq_location">
+            <field name="code">05</field>
+            <field name="name">Almacen-STG</field>
+        </record>
+    </data>
+</odoo>
