@@ -5,6 +5,7 @@ from odoo.modules import get_module_resource
 import base64
 from odoo.modules.module import get_module_resource
 
+
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
@@ -43,6 +44,11 @@ class ProductTemplate(models.Model):
                    ],
         required=False, )
 
+    @api.onchange('paq_location_id')
+    def _onchange_paq_location_id(self):
+        if self.package_state != 'entregado':
+            self.package_state = 'transportandose'
+
     @api.model
     def _get_default_image_value(self):
         image = False
@@ -53,7 +59,6 @@ class ProductTemplate(models.Model):
         if image:  # if the file type is .jpg then you don't need this whole if condition.
             image = tools.image_colorize(image)
         return tools.image_resize_image_big(base64.b64encode(image))
-
 
     def _default_image(self):
         image_path = get_module_resource('gestion_paquetes', 'static/img', 'paquete.png')
