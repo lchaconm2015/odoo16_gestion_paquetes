@@ -80,13 +80,14 @@ class AccountMove(models.Model):
 
         def create_new_product(self, product_name):
             '''This method create a new producto for every line in account move line, '''
+            location = self.env['paq_location'].search([('code', '=', '01')])
             object_product_template = self.env['product.product'].create(
                 {'name': product_name,
                  'detailed_type': 'product',
                  'is_package': True,
                  'invoice_related_id': self.move_id.id,
                  'responsable_id': self.env.user.id,
-                 'package_state': 'empaquetado'})
+                 'package_state': 'empaquetado',
+                 'paq_location_id': location.id})
 
             return object_product_template
-
