@@ -69,3 +69,11 @@ class ProductTemplate(models.Model):
         if vals.get('is_package'):
             vals['image_1920'] = self._default_image()
         return super(ProductTemplate, self).create(vals)
+
+    # def write(self, vals):
+    #      result = super(ProductTemplate, self).write(vals)
+    #      if vals.get('location_id'):
+    #        stage_rec = self.env['crm.stage'].search([('id ', '=', vals.get('stage_id'))], limit=1)
+    #        if stage_rec:
+    #
+    #      return result
