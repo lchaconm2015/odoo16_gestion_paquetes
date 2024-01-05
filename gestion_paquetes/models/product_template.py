@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models, tools, SUPERUSER_ID
 from odoo.modules import get_module_resource
 import base64
 from odoo.modules.module import get_module_resource
@@ -25,8 +25,25 @@ class ProductTemplate(models.Model):
 
     paq_location_id = fields.Many2one(
         comodel_name='paq_location',
-        string='Ubicación',
+        string='Ubicación', ondelete='restrict', tracking=True,
+        group_expand='_read_group_location_ids',
         required=False)
+
+    paq_location_ids = fields.Many2many(
+        comodel_name='paq_location',
+        string='Locations')
+
+    #
+    # stage_id = fields.Many2one('maintenance.stage', string='Stage', ondelete='restrict', tracking=True,
+    #                            group_expand='_read_group_stage_ids', default=_default_stage, copy=False)
+
+    @api.model
+    def _read_group_location_ids(self, location, domain, order):
+        """ Read group customization in order to display all the stages in the
+            kanban view, even if they are empty
+        """
+        paq_location_ids = location._search([], order=order, access_rights_uid=SUPERUSER_ID)
+        return location.browse(paq_location_ids)
 
     location_province = fields.Char(
         string='Ubicación (Provincia)',
