@@ -37,9 +37,10 @@ class ProductTemplate(models.Model):
         required=False)
     package_state = fields.Selection(
         string='Estado del Paquete',
-        selection=[('empaquetado', 'Empaquetado'),
-                   ('transportandose', 'Transportándose'),
-                   ('recibido', 'Recibido por el despachador'),
+        selection=[('facturado', 'Facturado'),
+                   ('clasificado', 'Clasificado'),
+                   ('recepcionado', 'Recepcionado'),
+                   ('transportandose', 'Transportandose'),
                    ('entregado', 'Entregado al destinatario'),
                    ],
         required=False, )

@@ -7,11 +7,7 @@
             <field name="arch" type="xml">
                 <kanban sample="1" class="o_kanban_product_template" default_group_by="paq_location_id">
                     <field name="id"/>
-                    <field name="product_variant_count"/>
-                    <field name="currency_id"/>
-                    <field name="activity_state"/>
-                    <progressbar field="activity_state"
-                                 colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+                    <field name="paq_location_id"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_card oe_kanban_global_click">

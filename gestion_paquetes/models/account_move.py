@@ -46,14 +46,10 @@ class AccountMove(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Paquetes',
-            'view_mode': 'kanban',
-            'view_type': 'tree',
+            'name': 'Paquete',
+            'view_mode': 'tree,form',
             'res_model': 'product.template',
-            'view_id': self.env.ref('gestion_paquetes.package_kanban_view').id,
-            # 'domain': [('invoice_related_id', '=', self.id)],
-
-            'context': "{'create': False}"
+            'domain': [('invoice_related_id', '=', self.id)]
         }
 
     class AccountMoveLine(models.Model):
@@ -83,11 +79,11 @@ class AccountMove(models.Model):
             location = self.env['paq_location'].search([('code', '=', '01')])
             object_product_template = self.env['product.product'].create(
                 {'name': product_name,
-                 'detailed_type': 'product',
+                 'detailed_type': 'consu',
                  'is_package': True,
                  'invoice_related_id': self.move_id.id,
                  'responsable_id': self.env.user.id,
-                 'package_state': 'empaquetado',
+                 'package_state': 'facturado',
                  'paq_location_id': location.id})
 
             return object_product_template

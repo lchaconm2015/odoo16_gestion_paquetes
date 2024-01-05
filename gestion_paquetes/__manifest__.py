@@ -11,7 +11,7 @@
     'website': "https://www.yourcompany.com",
     'category': 'Uncategorized',
     'version': '0.1',
-    'depends': ['web', 'base', 'account'],
+    'depends': ['web','website', 'base', 'account'],
     'data': [
         'security/ir.model.access.csv',
         'views/account_move_view_form.xml',
