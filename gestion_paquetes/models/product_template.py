@@ -33,10 +33,6 @@ class ProductTemplate(models.Model):
         comodel_name='paq_location',
         string='Locations')
 
-    #
-    # stage_id = fields.Many2one('maintenance.stage', string='Stage', ondelete='restrict', tracking=True,
-    #                            group_expand='_read_group_stage_ids', default=_default_stage, copy=False)
-
     @api.model
     def _read_group_location_ids(self, location, domain, order):
         """ Read group customization in order to display all the stages in the
